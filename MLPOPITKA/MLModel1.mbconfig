@@ -1,0 +1,126 @@
+﻿{
+  "TrainingTime": 10,
+  "Scenario": "Regression",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "C:\\Users\\Cartoonmode\\Desktop\\Знач 3.txt",
+    "Delimiter": "\t",
+    "DecimalMarker": ",",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "Date",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 2
+      },
+      {
+        "ColumnName": "Value",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 2
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 1,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastForestRegression",
+        "Score": 0.18692917774163142,
+        "RuntimeInSeconds": 1.7220000028610229
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastForestRegression",
+        "Score": 0.18741237647529968,
+        "RuntimeInSeconds": 1.1030000448226929
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsPoissonRegressionRegression",
+        "Score": 0.26719876855461655,
+        "RuntimeInSeconds": 1.218000054359436
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeRegression",
+        "Score": -17.505561765326462,
+        "RuntimeInSeconds": 0.95999997854232788
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LightGbmRegression",
+        "Score": 0.17715129544034183,
+        "RuntimeInSeconds": 1.2000000476837158
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeTweedieRegression",
+        "Score": -11.338638183880009,
+        "RuntimeInSeconds": 1.0559999942779541
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": -0.051001814344182661,
+        "RuntimeInSeconds": 0.968999981880188
+      }
+    ],
+    "Pipeline": {
+      "parameter": {
+        "0": {
+          "InputColumnName": "Date",
+          "OutputColumnName": "Date"
+        },
+        "1": {
+          "InputColumnNames": [
+            "Date"
+          ],
+          "OutputColumnName": "Features"
+        },
+        "2": {
+          "OutputColumnNames": [
+            "Features"
+          ],
+          "InputColumnNames": [
+            "Features"
+          ]
+        },
+        "3": {
+          "L1Regularization": 1.0,
+          "L2Regularization": 1.0,
+          "LabelColumnName": "Value",
+          "FeatureColumnName": "Features"
+        }
+      },
+      "estimators": [
+        "FeaturizeText",
+        "Concatenate",
+        "NormalizeMinMax",
+        "LbfgsPoissonRegressionRegression"
+      ]
+    },
+    "MetricName": "RSquared"
+  },
+  "Type": "TrainingConfig",
+  "Version": 2
+}
